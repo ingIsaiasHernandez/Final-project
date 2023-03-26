@@ -4,12 +4,12 @@ Objetivo general: Aplicar todos los conocimientos vistos en clase para levantar 
 
 - Conectarse a una base de datos
 - Se deben crear los siguientes modelos:
-    - User (id, username, email, password, avatar)
-    - Product (id, name, description, price, availableQty, status, userId, productImage)
     - Car (id, userId, totalPrice)
-    - ProductInCart (id, carId, productId, quantity, price, status)
     - Order (id, totalPrice, userId, status) // si completada pendiente
+    - Product (id, name, description, price, availableQty, status, userId, productImage)
+    - ProductInCart (id, carId, productId, quantity, price, status)
     - ProductInOrder (id, orderId, productId, quantity, price, status)
+    - User (id, username, email, password, avatar)
 - Establecer las siguientes relaciones:
     - Un usuario puede tener muchos productos, y un producto le pertenece a un usuario
     - Un usuario solo puede tener un carrito, y un carrito le pertenece a un usuario
