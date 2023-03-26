@@ -11,6 +11,8 @@ const app = express();
 
 
 // Set up database models
+//*! (relatedModels) file
+
 
 // Set up middleware
 app.use(cors()); // Enable CORS for all routes
