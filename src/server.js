@@ -3,12 +3,12 @@ const express = require('express');
 const morgan = require('morgan')
 const cors = require('cors');
 const db = require('./utils/database');
-
+const initModels = require('./models/initModels')
 // Create Express application
 const app = express();
 
 // Import routes
-
+initModels();
 
 // Set up database models
 //*! (relatedModels) file
@@ -27,7 +27,7 @@ db.authenticate()
     .then(() => console.log("Database authenticate")) // Log successful authentication
     .catch((error) => console.log(error)) // Log error if authentication fails
 
-db.sync({alter: true})
+db.sync({force: true})
     .then(() => console.log("Database async")) // Log successful synchronization
     .catch((error) => console.log(error)) // Log error if synchronization fails
 

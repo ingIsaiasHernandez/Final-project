@@ -6,26 +6,26 @@ const ProductInOrder = require("./productInOrder.model");
 const Users = require("./user.model");
 
 const initModels = () => {
-    Cart.belongsTo(Users, { foreignKey: 'userId' });
-    Users.hasOne(Cart, { foreignKey: 'userId' });
+    Users.belongsTo(Cart, { foreignKey: 'userId' });
+    Cart.hasOne(Users, { foreignKey: 'userId' });
 
-    Products.belongsTo(Users, { foreignKey: 'userId' });
-    Users.hasMany(Products, { foreignKey: 'userId' });
+    Users.belongsTo(Products, { foreignKey: 'userId' });
+    Products.hasMany(Users, { foreignKey: 'userId' });
 
     Order.belongsTo(Users, {foreignKey: "userId"});
     Users.hasMany(Order, {foreignKey: "userId"});
 
-    Cart.belongsTo(ProductInCart, {foreignKey: "cartId"});
-    ProductInCart.hasMany(Cart, {foreignKey: "cartId"});
+    ProductInCart.belongsTo(Cart, {foreignKey: "cartId"});
+    Cart.hasMany(ProductInCart, {foreignKey: "cartId"});
 
-    Products.belongsTo(ProductInCart, {foreignKey: "productId"});
-    ProductInCart.hasMany(Products, {foreignKey: "productId"});
+    ProductInCart.belongsTo(Products, {foreignKey: "productId"});
+    Products.hasMany(ProductInCart, {foreignKey: "productId"});
 
-    Order.belongsTo(ProductInOrder, {foreignKey: "orderId"});
-    ProductInOrder.hasMany(Order, {foreignKey: "orderId"});
+    ProductInOrder.belongsTo(Order, {foreignKey: "orderId"});
+    Order.hasMany(ProductInOrder, {foreignKey: "orderId"});
 
-    Products.belongsTo(ProductInOrder, {foreignKey: "productId"});
-    ProductInOrder.hasMany(Products, {foreignKey: "productId"});
+    ProductInOrder.belongsTo(Products, {foreignKey: "productId"});
+    Products.hasMany(ProductInOrder, {foreignKey: "productId"});
 }
 
 module.exports = initModels;
