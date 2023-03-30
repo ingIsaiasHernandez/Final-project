@@ -21,7 +21,7 @@ const ProductInOrder = db.define('products_in_order', {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    proce: {
+    price: {
         type: DataTypes.INTEGER,
         allowNull: false
     },

@@ -9,7 +9,8 @@ const Cart = db.define('carts', {
     },
     userId: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        field: "user_id"
     },
     totalPrice: {
         type: DataTypes.INTEGER,

@@ -10,7 +10,6 @@ class ProductsServices {
             throw error;
         }
     }
-
 }
 
 module.exports = ProductsServices;

@@ -26,8 +26,9 @@ const ProductInCart = db.define("products_in_cart", {
         allowNull: false
     },
     status: {
-        type: DataTypes.STRING,
-        defaultValue: "pending"
+        type: DataTypes.ENUM,
+        values: ["PENDING", "COMPLETED"],
+        defaultValue: "PENDING"
     }
 });
 

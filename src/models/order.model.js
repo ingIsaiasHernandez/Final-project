@@ -9,7 +9,8 @@ const Order = db.define('orders', {
     },
     totalPrice: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        field: "total_price"
     },
     status: {
         type: DataTypes.BOOLEAN,

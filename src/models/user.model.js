@@ -35,7 +35,6 @@ const Users = db.define('users', {
                 try {
                     const salt = await bcrypt.genSalt(10);
                     const passwordHash = await bcrypt.hash(user.password, salt);
-                    user.password = passwordHash;
                 } catch (error) {
                     throw error;
                 }
