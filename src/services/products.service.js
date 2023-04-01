@@ -19,6 +19,17 @@ class ProductsServices {
             throw error;
         }
     }
+
+    static async delete(id) {
+      try {
+        const result = Products.destroy({
+          where: { id },
+        });
+        return result;
+      } catch (error) {
+        throw error;
+      }
+    }
 }
 
 module.exports = ProductsServices;

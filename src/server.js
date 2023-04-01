@@ -11,7 +11,7 @@ const app = express();
 
 // Import routes
 const userRoutes = require('./routes/user.routes');
-const productRoutes = require('./routes/product.routes');
+const productRoutes = require('./routes/products.routes');
 
 // Set up database models
 initModels();
@@ -45,7 +45,6 @@ app.get("/", (req, res) => {
 errorHandlerRouter(app);
 
 // Start server and listen on specified port
-const PORT = 8000;
-app.listen(PORT, () => {
-    console.log(`Server listening at port: ${PORT}`); // Log server start message
+app.listen(process.env.PORT, () => {
+    console.log(`Server listening at port: ${process.env.PORT}`); // Log server start message
 })

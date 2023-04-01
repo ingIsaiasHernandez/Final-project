@@ -19,7 +19,18 @@ const createProduct = async (req, res) => {
     }
 }
 
+const deleteProduct = async (req, res) => {
+    try {
+        const deleteProduct = req.body;
+        const product = await ProductsServices.delete(deleteProduct);
+        res.status(2044).send();
+    } catch (error) {
+        res.status(400).json(error);
+    }
+}
+
 module.exports = {
     getAllProducts,
-    createProduct
+    createProduct,
+    deleteProduct
 };
