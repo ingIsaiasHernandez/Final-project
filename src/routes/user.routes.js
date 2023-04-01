@@ -1,10 +1,12 @@
 const {Router} = require('express');
-const { createUser, updateUser } = require('../controllers/user.controller');
+const { createUser, updateUser, userLogin } = require('../controllers/user.controller');
 const { createUserValidator, updateUserValidator } = require('../validators/users.validators');
+const authenticate = require('../middlewares/auth.middleware');
 const router = Router();
 
-router.post("/api/v1/users", createUserValidator, createUser);
-router.put("/api/v1/users/:id", updateUserValidator, updateUser);
+router.post("/users", createUserValidator, createUser);
+router.put("/users/:id", updateUserValidator, authenticate, updateUser);
+router.post("/users/login", userLogin)
 
 module.exports = router;
 

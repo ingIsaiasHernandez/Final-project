@@ -20,6 +20,17 @@ class UserServices {
             throw error;
         }
     }
+
+    static async getUser(email) {
+        try {
+            const user = await Users.findOne({
+                where: { email }
+            });
+            return user;
+        } catch (error) {
+            throw error; 
+        }
+    }
 }
 
 module.exports = UserServices;

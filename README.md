@@ -35,3 +35,17 @@ Objetivo general: Aplicar todos los conocimientos vistos en clase para levantar 
     - // no hay verificacion de email
 - Tu api debe tener una página de documentación con los endpoints que usas y que se pueda probar, incluyendo los campos requeridos para las peticiones y una sección para incluir el token de autenticación si es necesario. ( swwager)
 - Enviar en class center link del repositorio y enlace de tu api desplegada (railway, render)
+
+
+//Endpoints faltantes
+- Debe contener los siguientes puntos:
+    - Crear la validaciones pertinentes para cada endpoint ( express validator)
+    - Poder editar la descripción de un producto
+    - Agregar un producto al carrito
+    - Mostrar todos los productos que el usuario tiene hasta el momento en su carrito
+    - Realizar una compra, todos los productos en el carrito se marcan como comprados y el carrito cambia a status ‘purchased’
+    - Ver todas las ordenes del usuario
+    - Mandar un correo cuando un usuario crea una cuenta y cuando realiza una compra
+    - // no hay verificacion de email
+- Tu api debe tener una página de documentación con los endpoints que usas y que se pueda probar, incluyendo los campos requeridos para las peticiones y una sección para incluir el token de autenticación si es necesario. ( swwager)
+- Enviar en class center link del repositorio y enlace de tu api desplegada (railway, render)

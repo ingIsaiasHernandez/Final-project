@@ -1,25 +1,24 @@
 const UserServices = require("../services/user.service");
 const transporter = require("../utils/mailer");
 const AuthServices = require('../services/auth.services');
+const bcrypt = require('bcrypt');
+const Cart = require("../models/cart.model");
 require('dotenv').config()
 
 const createUser = async (req, res, next) => {
     try {
         const newUser = req.body;
         const result = await UserServices.create(newUser)
-        res.status(201).json(result);
-        const { id, email, username } = result;
-        const token = await AuthServices.genToken({ id, email, username })
+        await Cart.create({ userId: result.id });
         await transporter.sendMail({
             from: process.env.MAIL_USER,
             to: result.email,
             subject: "Verifica tu correo electronico",
             html: `
                 <p> Hola ${result.username} Benvenido a mi ecommerce </p>
-                <p> Es necesario que verifiques tu correo </p>
-                <a href="https://localhost:5173/verify?token=${token}" target="_blank"> Validar correo </a>
             `
-        })
+        });
+        res.status(201).json(result);
     } catch (error) {
         next(error);
     }
@@ -27,7 +26,17 @@ const createUser = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
     try {
-        const { id } = req.params;
+        const tokenId = Number(req.user.id);
+        const paramsId = Number(req.params.id);
+        console.log(tokenId, paramsId);
+        if (tokenId !== paramsId) {
+            next ({
+                status: 400,
+                message: "Token id and params id are diferent",
+                errorName: "Invalid id"
+            })
+        }
+        const { id } = req.user;
         const updatedInfo = req.body;
         await UserServices.update(id, updatedInfo);
         res.status(204).send()
@@ -36,7 +45,40 @@ const updateUser = async (req, res, next) => {
     }
 }
 
+const userLogin = async (req, res, next) => {
+    try {
+        const { email, password } = req.body;
+        const user = await UserServices.getUser(email);
+        if (!user) {
+            return next({
+                status: 400,
+                message: "Invalid email",
+                errorName: "User not found"
+            })
+        }
+        const isValid = await bcrypt.compare(password, user.password);
+        if (!isValid) {
+            return ({
+                status: 400,
+                message: "The password doesn't match with email user",
+                messageName: "Invalid password"
+            })
+        };
+        //const { id , username } = user;
+        const token = AuthServices.genToken({ id, username, email });
+        res.json({
+            id,
+            username,
+            email,
+            token
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
 module.exports = {
     createUser,
-    updateUser
+    updateUser,
+    userLogin
 }

@@ -1,15 +1,16 @@
 const {Router} = require('express');
+const authenticate = require('../middlewares/auth.middleware')
 const { getAllProducts, createProduct, deleteProduct } = require('../controllers/products.controller');
 
 const router = Router();
 
 // obtiene todos los productos
-router.get('/api/v1/products', getAllProducts);
+router.get('/products', getAllProducts);
 
 // añade producto
-router.post("/api/v1/products/:id", createProduct);
+router.post("/products/",authenticate, createProduct);
 
 // borra producto
-router.delete('/api/v1/products/:id', deleteProduct);
+router.delete('/products/:id', deleteProduct);
 
 module.exports = router;

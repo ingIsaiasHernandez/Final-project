@@ -10,8 +10,7 @@ require('dotenv').config();
 const app = express();
 
 // Import routes
-const userRoutes = require('./routes/user.routes');
-const productRoutes = require('./routes/products.routes');
+const ApiRoutes = require('./routes');
 
 // Set up database models
 initModels();
@@ -22,15 +21,14 @@ app.use(morgan('dev')); // Log HTTP requests in development mode
 app.use(express.json()); // Parse JSON-encoded request bodies
 
 // Set up routes 
-app.use(userRoutes)
-app.use(productRoutes)
+ApiRoutes(app)
 
 // Authenticate and synchronize database
 db.authenticate()
     .then(() => console.log("Database authenticate")) // Log successful authentication
     .catch((error) => console.log(error)) // Log error if authentication fails
 
-db.sync({force: true})
+db.sync({force: false})
     .then(() => console.log("Database async")) // Log successful synchronization
     .catch((error) => console.log(error)) // Log error if synchronization fails
 

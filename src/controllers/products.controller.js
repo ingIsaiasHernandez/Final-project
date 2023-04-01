@@ -11,8 +11,10 @@ const getAllProducts = async(req, res) => {
 
 const createProduct = async (req, res) => {
     try {
+        const userId = req.user.id;
         const newProduct = req.body;
-        const product = await ProductsServices.create(newProduct);
+        console.log(userId, newProduct);
+        const product = await ProductsServices.create(userId, newProduct);
         res.status(201).json(product)
     } catch (error) {
         res.status(400).json(error);
