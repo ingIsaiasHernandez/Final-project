@@ -11,6 +11,8 @@ const app = express();
 
 // Import routes
 const userRoutes = require('./routes/user.routes');
+const productRoutes = require('./routes/product.routes');
+
 // Set up database models
 initModels();
 
@@ -21,6 +23,7 @@ app.use(express.json()); // Parse JSON-encoded request bodies
 
 // Set up routes 
 app.use(userRoutes)
+app.use(productRoutes)
 
 // Authenticate and synchronize database
 db.authenticate()
@@ -42,7 +45,7 @@ app.get("/", (req, res) => {
 errorHandlerRouter(app);
 
 // Start server and listen on specified port
-
-app.listen(process.env.PORT, () => {
-    console.log(`Server listening at port: ${process.env.PORT}`); // Log server start message
+const PORT = 8000;
+app.listen(PORT, () => {
+    console.log(`Server listening at port: ${PORT}`); // Log server start message
 })

@@ -30,14 +30,13 @@ const Users = db.define('users', {
     }
 }, {
     hooks: {
-        beforeCreate: {
-            beforeCreate: async (user) => {
-                try {
-                    const salt = await bcrypt.genSalt(10);
-                    const passwordHash = await bcrypt.hash(user.password, salt);
-                } catch (error) {
-                    throw error;
-                }
+        beforeCreate: async (user) => {
+            try {
+                const salt = await bcrypt.genSalt(10);
+                const passwordHash = await bcrypt.hash(user.password, salt);
+                user.password = passwordHash; // actualizar la contraseña cifrada en el objeto usuario
+            } catch (error) {
+                throw error;
             }
         }
     },
