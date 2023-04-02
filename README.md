@@ -40,7 +40,6 @@ Objetivo general: Aplicar todos los conocimientos vistos en clase para levantar 
 //Endpoints faltantes
 - Debe contener los siguientes puntos:
     - Crear la validaciones pertinentes para cada endpoint ( express validator)
-    - Poder editar la descripción de un producto
     - Agregar un producto al carrito
     - Mostrar todos los productos que el usuario tiene hasta el momento en su carrito
     - Realizar una compra, todos los productos en el carrito se marcan como comprados y el carrito cambia a status ‘purchased’

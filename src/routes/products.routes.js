@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const authenticate = require('../middlewares/auth.middleware')
-const { getAllProducts, createProduct, deleteProduct } = require('../controllers/products.controller');
+const { getAllProducts, createProduct, deleteProduct, updateItem } = require('../controllers/products.controller');
 
 const router = Router();
 
@@ -11,6 +11,8 @@ router.get('/products', getAllProducts);
 router.post("/products/",authenticate, createProduct);
 
 // borra producto
-router.delete('/products/:id', deleteProduct);
+router.delete('/products/', authenticate, deleteProduct);
+
+router.put("/products/:id", authenticate, updateItem)
 
 module.exports = router;

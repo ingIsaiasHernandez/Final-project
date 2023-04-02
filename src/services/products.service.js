@@ -45,9 +45,27 @@ class ProductsServices {
 
   static async delete(id) {
     try {
-      const result = Products.destroy({
+      const result = await Products.destroy({
         where: { id },
       });
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async getOne(id) {
+    try {
+      const result = await Products.findByPk(id);
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async update(id, updatedInfo) {
+    try {
+      const result = await Products.update(updatedInfo, { where: { id }})
       return result;
     } catch (error) {
       throw error;

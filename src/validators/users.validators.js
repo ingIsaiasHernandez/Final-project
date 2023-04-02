@@ -27,11 +27,14 @@ const updateUserValidator = [
     param("id").isInt().withMessage("El id debe ser un número entero"),
     check("username")
         .isString()
-        .exists()
         .withMessage("No se encuentra en nombre para el usuario")
         .notEmpty()
         .withMessage("El nombre no debe ser un string vacio"),
+    check("avatar")
+        .isString()
+        .notEmpty(),
     check("email", "El correo no se puede cambiar").not().exists(),
+    check("password", "El password no se puede cambiar").not().exists(),
     (req, res, next) => {
         validateResult(req, res, next);
     }

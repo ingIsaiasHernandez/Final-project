@@ -64,7 +64,7 @@ const userLogin = async (req, res, next) => {
                 messageName: "Invalid password"
             })
         };
-        //const { id , username } = user;
+        const { id , username } = user;
         const token = AuthServices.genToken({ id, username, email });
         res.json({
             id,
