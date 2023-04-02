@@ -27,7 +27,7 @@ const ProductInCart = db.define("products_in_cart", {
     },
     status: {
         type: DataTypes.ENUM,
-        values: ["PENDING", "COMPLETED"],
+        values: ["PENDING", "PURCHASED"],
         defaultValue: "PENDING"
     }
 });

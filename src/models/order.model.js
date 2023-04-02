@@ -14,7 +14,7 @@ const Order = db.define('orders', {
     },
     status: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false
+        defaultValue: true
     }
 });
 

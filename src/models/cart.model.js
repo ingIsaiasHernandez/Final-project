@@ -14,7 +14,8 @@ const Cart = db.define('carts', {
     },
     totalPrice: {
         type: DataTypes.INTEGER,
-        field: "total_price"
+        field: "total_price",
+        defaultValue: 0
     }
 }, {
     timestamps: false

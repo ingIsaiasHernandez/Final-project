@@ -23,14 +23,41 @@ const addToCart = async (req, res, next) => {
             })
         }
         const price = Number(quantity * product.price);
-        console.log(cartId, productId, quantity, price);
-        await cartServices.add({cartId, productId, quantity, price});
+        await cartServices.add({ cartId, productId, quantity, price });
+        await cartServices.sumPrice(Number(cartId), price);
         res.status(200).send();
     } catch (error) {
         next(error);
     }
 }
 
+const getCartProducts = async (req, res, next) => {
+    try {
+        const { id } = req.user;
+        const cart = await cartServices.getCart(id);
+        const cartId = cart.id;
+        const productsInCart = await cartServices.getProducts(cartId)
+        res.status(200).json(productsInCart);
+    } catch (error) {
+        next(error)
+    }
+}
+
+const purchaseCart = async (req, res, next) => {
+    try {
+        const userId = req.user.id;
+        const status = req.body
+        const cart = await cartServices.getCart(userId);
+        const cartId = cart.id;
+        const result = await cartServices.buy(cartId, status);
+        res.status(204).send()
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
-    addToCart
+    addToCart,
+    getCartProducts,
+    purchaseCart
 }
