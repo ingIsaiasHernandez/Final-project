@@ -1,3 +1,7 @@
+// Import documentation of Swagger.
+const swaggerUi = require("swagger-ui-express");
+const swaggerDoc = require("./swagger.json");
+
 // Import required packages and modules
 const express = require('express');
 const morgan = require('morgan')
@@ -15,7 +19,11 @@ const ApiRoutes = require('./routes');
 // Set up database models
 initModels();
 
+
+
 // Set up middleware
+
+app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 app.use(cors()); // Enable CORS for all routes
 app.use(morgan('dev')); // Log HTTP requests in development mode
 app.use(express.json()); // Parse JSON-encoded request bodies

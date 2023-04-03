@@ -4,6 +4,7 @@ const ProductInCart = require('../models/productInCart.model');
 const ProductInOrder = require('../models/productInOrder.model');
 
 class cartServices {
+    
     static async getCart(userId) {
         try {
             const result = await Cart.findOne({ where: { userId } })

@@ -1,0 +1,45 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Ecommerce API",
+        "descriptions": "Una API para que puedas adimistrar un ecommerce con funcionalidades basica para ahcer pruebas en caulquier Frontend",
+        "version": "1.0.0"
+    },
+    "paths":{
+        "/api/v1/users":{
+            "tags": ["users"],
+            "description": "Este endpoint es para crear un usuario",
+            "summary": "Crea un nuevo usuario en el ecommerce",
+            "requestBody": "Los campos para crear un nuevo usuario en el ecommerce",
+            "required": true,
+            "content": {
+                "aplication/json":{
+                    "schema": {"$ref": "#/definitions/schemas/login"}
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "login": {
+                "type": "object",
+                    "properties": {
+                        
+                        "username": {
+                            "type": "string",
+                            "example": "isaias"
+                    },
+                        "email": {
+                            "type": "string",
+                            "example": "bluesaias@gmail.com"
+                    },
+
+                        "password": {
+                            "type": "string",
+                            "example": "123445"
+                    }
+                }
+            }
+        }
+    }
+}
