@@ -27,7 +27,7 @@ const ProductInOrder = db.define('products_in_order', {
     },
     status: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false
+        defaultValue: true
     }
 });
 

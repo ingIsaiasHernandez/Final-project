@@ -1,5 +1,7 @@
+const Order = require("../models/order.model");
 const cartServices = require("../services/cart.services");
 const ProductsServices = require("../services/products.service");
+const transporter = require("../utils/mailer");
 
 const addToCart = async (req, res, next) => {
     try {
@@ -49,7 +51,19 @@ const purchaseCart = async (req, res, next) => {
         const status = req.body
         const cart = await cartServices.getCart(userId);
         const cartId = cart.id;
-        const result = await cartServices.buy(cartId, status);
+        await cartServices.buy(cartId, status);
+        const productsInCart = await cartServices.getProducts(cartId)
+        const order = await cartServices.createOrder(productsInCart, userId);
+        await cartServices.createProductsInOrder(order, productsInCart)
+        await cartServices.cleanCart(cartId)
+        await transporter.sendMail({
+            from: process.env.MAIL_USER,
+            to: req.user.email,
+            subject: "Gracias por tu compra en libre mercadeo",
+            html: `
+                <p> Hola ${req.user.username} Gracias por tu compra con nosotros :) </p>
+            `
+        });
         res.status(204).send()
     } catch (error) {
         next(error)
