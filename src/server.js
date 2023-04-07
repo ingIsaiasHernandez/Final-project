@@ -22,11 +22,14 @@ initModels();
 
 
 // Set up middleware
-
 app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 app.use(cors()); // Enable CORS for all routes
 app.use(morgan('dev')); // Log HTTP requests in development mode
 app.use(express.json()); // Parse JSON-encoded request bodies
+
+
+//Port where listening
+const PORT = process.env.PORT || 8000;
 
 // Set up routes 
 ApiRoutes(app)
@@ -51,6 +54,6 @@ app.get("/", (req, res) => {
 errorHandlerRouter(app);
 
 // Start server and listen on specified port
-app.listen(process.env.PORT, () => {
+app.listen(PORT, () => {
     console.log(`Server listening at port: ${process.env.PORT}`); // Log server start message
 })
