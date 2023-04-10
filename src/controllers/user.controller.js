@@ -13,12 +13,12 @@ const createUser = async (req, res, next) => {
         await transporter.sendMail({
             from: process.env.MAIL_USER,
             to: result.email,
-            subject: "Verifica tu correo electronico",
+            subject: "Bienvenido a libre mercadeo",
             html: `
-                <p> Hola ${result.username} Benvenido a mi ecommerce </p>
+                <p> ¡Hola ${result.username} Benvenido a libre mercadeo! </p>
             `
         });
-        res.status(201).json(result);
+        res.status(201).send();
     } catch (error) {
         next(error);
     }

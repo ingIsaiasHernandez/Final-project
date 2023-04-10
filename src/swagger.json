@@ -64,7 +64,7 @@
   
               },
               "responses": {
-                  "201": {
+                  "200": {
                     "description": "created"
                   },
                   "400": {
@@ -74,6 +74,10 @@
                         "schema": {
                           "type": "object",
                           "properties": {
+                            "username": {
+                              "type": "string",
+                              "example": "Invalid email"
+                            },
                             "message": {
                               "type": "string",
                               "example": "Invalid email"
@@ -359,20 +363,10 @@
                   }
                 }
               }
-            }
-          },
-          "/api/v1/cart/{id}": {
+            },
             "put": {
               "summary": "Modifica el carro de compras",
               "description": "Modifica el carro de compras mediante los valores o información del id del producto y usuario",
-              "parameters": [
-                {
-                  "name": "id",
-                  "in": "path",
-                  "required": true,
-                  "description": "El id de la table que contiene los productos y usuario del carro que se va a actualizar"
-                }
-              ],
               "tags": ["cart"],
               "responses": {
                 "202": {
@@ -407,7 +401,7 @@
                 }
               }
             }
-          }        
+          }   
         },
         "components": {
           "schemas": {
@@ -429,6 +423,7 @@
               "description": "la contraseña debe tener al menos 7 caracteres",
               "type": "object",
               "properties": {
+                
                 "email": {
                   "type": "string",
                   "example": "isaiashdez@gmail.com"
