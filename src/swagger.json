@@ -368,6 +368,14 @@
               "put": {
                 "summary": "Modifica el carro de compras",
                 "description": "Modifica el carro de compras mediante los valores o información del id del producto y usuario",
+                "parameters": [
+                  {
+                    "name": "PURCHASED",
+                    "in": "path",
+                    "required": true,
+                    "description": "El estatus del carrito de compras"
+                  }
+                ],
                 "tags": ["cart"],
                 "responses": {
                   "204": {
