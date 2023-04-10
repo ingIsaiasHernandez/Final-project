@@ -58,7 +58,8 @@
                     "required": true,
                     "content": {
                         "aplication/json":{
-                            "schema": {"$ref": "#/components/schemas/login"}
+                            "schema": {"$ref": "#/components/schemas/Token"}
+                            
                         }
                     }
     
@@ -544,7 +545,7 @@
               }
             }
             },
-            "securitySchemes":{
+            "Token":{
               "securitySchemes": {
                 "BearerAuth": {
                   "type": "http",
@@ -554,7 +555,7 @@
               },
               "parameters": {
                 "AccessToken": {
-                  "name": "access-token",
+                  "name": "Authorization",
                   "in": "header",
                   "required": true,
                   "schema": {
