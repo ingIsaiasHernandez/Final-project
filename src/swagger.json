@@ -125,9 +125,10 @@
         "/api/v1/products": {
             "get": {
               "summary": "Obtiene todas los articulos hechas por el usuario",
+              "description": "obtiene los productos obtenidos por usuario mediante GET",
               "tags": ["products"],
               "responses": {
-                "201": {
+                "200": {
                   "description": "Ok",
                   
                   "content": {
@@ -288,14 +289,14 @@
                 }
               }
             }
-          },
-          "/api/v1/cart": {
+        },
+        "/api/v1/cart": {
             "get": {
               "summary": "Obtiene el carro de compras",
               "description": "Muestra los articulos en el carro de compras",
               "tags": ["cart"],
               "responses": {
-                "201": {
+                "200": {
                   "description": "Ok",
                   
                   "content": {
@@ -369,12 +370,12 @@
               "description": "Modifica el carro de compras mediante los valores o información del id del producto y usuario",
               "tags": ["cart"],
               "responses": {
-                "202": {
+                "204": {
                   "description": "Ok",
                   
                   "content": {
                     "application/json": {
-                      "schema": { "$ref": "#/components/schemas/products" }
+                      "schema": { "$ref": "#/components/schemas/purchased" }
                     }
                   }
                   
@@ -401,7 +402,7 @@
                 }
               }
             }
-          }   
+        }   
         },
         "components": {
           "schemas": {
@@ -496,13 +497,13 @@
         }
             },
             "cart": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "integer",
-              "example": 1
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": 1
             },
             "userId": {
               "type": "integer",
@@ -515,9 +516,21 @@
                 
     }
   }
-          }
+            },
+            "purchased": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "PURCHASED"
+                }
+              }
+            }
+            }
+        }
     }
-  }
 }
         
             
