@@ -543,9 +543,29 @@
                 }
               }
             }
+            },
+            "securitySchemes":{
+              "securitySchemes": {
+                "BearerAuth": {
+                  "type": "http",
+                  "scheme": "bearer",
+                  "bearerFormat": "JWT"
+                }
+              },
+              "parameters": {
+                "AccessToken": {
+                  "name": "access-token",
+                  "in": "header",
+                  "required": true,
+                  "schema": {
+                    "type": "string",
+                    "format": "JWT"
+                  }
+                }
+              }
             }
+          }
         }
-    }
 }
         
             
