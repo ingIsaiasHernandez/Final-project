@@ -5,6 +5,7 @@
         "description": "Una API para que puedas adimistrar un ecommerce con funcionalidades basicas para hacer pruebas en caulquier Frontend",
         "version": "1.0.0"
     },
+    
     "paths":{
         "/api/v1/users":{
             "post": {
@@ -58,7 +59,7 @@
                     "required": true,
                     "content": {
                         "aplication/json":{
-                            "schema": {"$ref": "#/components/schemas/Token"}
+                            "schema": {"$ref": "#/components/schemas/login"}
                             
                         }
                     }
