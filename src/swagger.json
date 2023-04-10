@@ -16,7 +16,7 @@
                     "required": true,
                     "content": {
                         "aplication/json":{
-                            "schema": {"$ref": "#/components/schemas/login"}
+                            "schema": {"$ref": "#/components/schemas/users"}
                         }
                     }
     
@@ -33,6 +33,10 @@
                             "type": "object",
                             "properties": {
                               "name": {
+                                "type": "string",
+                                "example": "validation error"
+                              },
+                              "username": {
                                 "type": "string",
                                 "example": "validation error"
                               },
@@ -406,17 +410,25 @@
         },
         "components": {
           "schemas": {
-            "login": {
+            "users": {
               "description": "la contraseña debe tener al menos 7 caracteres",
               "type": "object",
               "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "AngelHerrera1"
+                },
                 "email": {
                   "type": "string",
-                  "example": "isaiashdez@gmail.com"
+                  "example": "angelherrera1996@gmail.com"
                 },
                 "password": {
                   "type": "string",
-                  "example": "1234567"
+                  "example": "calcetin123"
+                },
+                "avatar": {
+                  "type": "string",
+                  "example": "https://static.vecteezy.com/system/resources/previews/002/002/403/non_2x/man-with-beard-avatar-character-isolated-icon-free-vector.jpg"
                 }
               }
             },
@@ -499,12 +511,12 @@
             "cart": {
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
+              "type": "object",
+              "properties": {
                   "id": {
-                    "type": "integer",
-                    "example": 1
-            },
+                  "type": "integer",
+                  "example": 1
+                },
             "userId": {
               "type": "integer",
               "example": 1
