@@ -296,7 +296,7 @@
               "description": "Muestra los articulos en el carro de compras",
               "tags": ["cart"],
               "responses": {
-                "500": {
+                "200": {
                   "description": "Ok",
                   
                   "content": {
